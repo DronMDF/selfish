@@ -29,9 +29,8 @@ enable_testing()
 # @todo #1 Add unittest runner
 #add_subdirectory(test)
 
-# @todo #1 Add style check
-#add_custom_target(
-#	style
-#	COMMAND ${CMAKE_SOURCE_DIR}/style.sh
-#	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-#)
+add_custom_target(
+	style
+	COMMAND ${CMAKE_SOURCE_DIR}/style.sh
+	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+)
