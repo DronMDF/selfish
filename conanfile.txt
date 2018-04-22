@@ -2,4 +2,5 @@
 cmake
 
 [requires]
+2out/0.5@dronmdf/stable
 goost/0.1@dronmdf/testing
