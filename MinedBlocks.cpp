@@ -18,7 +18,7 @@ MinedBlocks::MinedBlocks(
 list<shared_ptr<const Block>> MinedBlocks::asList() const
 {
 	list<shared_ptr<const Block>> result;
-	for (const auto &m: miners) {
+	for (const auto &m : miners) {
 		const auto block = m->mine(chain);
 		if (block) {
 			result.push_back(block);
