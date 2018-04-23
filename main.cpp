@@ -23,7 +23,7 @@ int main(int, char **)
 		const auto mined = MinedBlocks(miners, chain).asList();
 		if (!mined.empty()) {
 			// @todo #7 Implement chain with blocks
-			// chain = make_shared<FullChain>(chain, mined);
+			//  chain = make_shared<FullChain>(chain, mined);
 		}
 	}
 	return 0;
