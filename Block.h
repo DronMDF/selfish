@@ -4,8 +4,11 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #pragma once
+#include <string>
 
 class Block {
 public:
 	~Block() = default;
+
+	virtual std::string hash() const = 0;
 };

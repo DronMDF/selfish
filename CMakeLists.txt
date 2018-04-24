@@ -9,8 +9,11 @@ conan_basic_setup()
 add_executable(
 	selfish
 	main.cpp
+	BaseBlock.cpp
+	EmptyChain.cpp
 	FairMiner.cpp
 	MinedBlocks.cpp
+	NextBlock.cpp
 )
 
 set_target_properties(

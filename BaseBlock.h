@@ -4,14 +4,10 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #pragma once
-#include <memory>
-#include <vector>
+#include "Block.h"
 
-class Block;
-
-class Chain {
+// @todo #10 This is not a BaseBlock. This is NullBlock.
+class BaseBlock final : public Block {
 public:
-	virtual ~Chain() = default;
-
-	virtual std::vector<std::shared_ptr<const Block>> heads() const = 0;
+	std::string hash() const override;
 };
