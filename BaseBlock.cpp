@@ -3,15 +3,11 @@
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
 
-#pragma once
-#include <memory>
-#include <vector>
+#include "BaseBlock.h"
 
-class Block;
+using namespace std;
 
-class Chain {
-public:
-	virtual ~Chain() = default;
-
-	virtual std::vector<std::shared_ptr<const Block>> heads() const = 0;
-};
+string BaseBlock::hash() const
+{
+	return {0, '0'};
+}

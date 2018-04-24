@@ -4,11 +4,25 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "FairMiner.h"
+#include <algorithm>
+#include <random>
+#include "Chain.h"
+#include "NextBlock.h"
 
 using namespace std;
 
 shared_ptr<Block> FairMiner::mine(const shared_ptr<const Chain> &chain) const
 {
-	// @todo #7 Implement fair mining
+	auto heads = chain->heads();
+
+	random_device rd;
+	mt19937 g(rd());
+	shuffle(heads.begin(), heads.end(), g);
+
+	const auto parent = heads.front();
+	const auto block = make_shared<NextBlock>(parent, this, g());
+	if (block->hash().find("0") == 0) {
+		return block;
+	}
 	return {};
 }
