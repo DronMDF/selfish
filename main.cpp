@@ -24,7 +24,7 @@ int main(int, char **)
 	while (true) {
 		const auto mined = MinedBlocks(miners, chain).asList();
 		if (!mined.empty()) {
-			for (const auto &m: mined) {
+			for (const auto &m : mined) {
 				cout << m->identity() << endl;
 			}
 			// @todo #7 Implement chain with blocks
