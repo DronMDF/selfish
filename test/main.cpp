@@ -7,17 +7,19 @@
 #include <2out/CountError.h>
 #include <2out/CountFailure.h>
 #include <2out/Result.h>
-#include <2out/TestEqual.h>
 #include <2out/TestSuite.h>
 #include <2out/TextReport.h>
+#include "BaseBlockTest.h"
 
 using namespace std;
 using namespace oout;
 
 int main(int, char **)
 {
-	const TestEqual test("2out", "2out");
-	const shared_ptr<const Result> result = test.result();
+	const TestSuite tests(
+		make_shared<BaseBlockTest>()
+	);
+	const shared_ptr<const Result> result = tests.result();
 
 	cout << TextReport(result).asString() << endl;
 

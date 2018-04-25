@@ -10,5 +10,7 @@ class Block {
 public:
 	~Block() = default;
 
+	virtual size_t number() const = 0;
 	virtual std::string hash() const = 0;
+	virtual std::string identity() const = 0;
 };

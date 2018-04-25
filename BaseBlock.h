@@ -9,5 +9,7 @@
 // @todo #10 This is not a BaseBlock. This is NullBlock.
 class BaseBlock final : public Block {
 public:
+	size_t number() const override;
 	std::string hash() const override;
+	std::string identity() const override;
 };

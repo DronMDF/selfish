@@ -3,7 +3,13 @@ cmake_minimum_required(VERSION 3.5)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-add_executable(selfish_test main.cpp)
+# @todo #14 Find more usable way for share sources beetwen app and test
+add_executable(
+	selfish_test
+	main.cpp
+	../BaseBlock.cpp
+	BaseBlockTest.cpp
+)
 
 set_target_properties(
 	selfish_test

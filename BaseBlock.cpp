@@ -7,7 +7,17 @@
 
 using namespace std;
 
+size_t BaseBlock::number() const
+{
+	return 0;
+}
+
 string BaseBlock::hash() const
 {
-	return {0, '0'};
+	return string(32, '0');
+}
+
+string BaseBlock::identity() const
+{
+	return "0:" + hash();
 }
