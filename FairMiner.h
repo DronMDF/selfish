@@ -8,5 +8,8 @@
 
 class FairMiner final : public Miner {
 public:
+	explicit FairMiner(const std::string &name);
 	std::shared_ptr<Block> mine(const std::shared_ptr<const Chain> &chain) const override;
+private:
+	const std::string name;
 };

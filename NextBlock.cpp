@@ -9,9 +9,17 @@
 
 using namespace std;
 
-NextBlock::NextBlock(const shared_ptr<const Block> &parent, const void *id, int nonce)
-	: parent(parent), id(id), nonce(nonce)
+NextBlock::NextBlock(
+	const shared_ptr<const Block> &parent,
+	const string &miner,
+	const int nonce
+) : parent(parent), miner(miner), nonce(nonce)
 {
+}
+
+size_t NextBlock::number() const
+{
+	return parent->number() + 1;
 }
 
 string NextBlock::hash() const
@@ -20,4 +28,9 @@ string NextBlock::hash() const
 	ostringstream out;
 	out << hex << setfill('0') << setw(8) << nonce;
 	return out.str();
+}
+
+string NextBlock::identity() const
+{
+	return to_string(number()) + ":" + hash() + "@" + parent->hash() + " by " + miner;
 }

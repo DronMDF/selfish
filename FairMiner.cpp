@@ -11,6 +11,11 @@
 
 using namespace std;
 
+FairMiner::FairMiner(const string &name)
+	: name(name)
+{
+}
+
 shared_ptr<Block> FairMiner::mine(const shared_ptr<const Chain> &chain) const
 {
 	auto heads = chain->heads();
@@ -20,7 +25,8 @@ shared_ptr<Block> FairMiner::mine(const shared_ptr<const Chain> &chain) const
 	shuffle(heads.begin(), heads.end(), g);
 
 	const auto parent = heads.front();
-	const auto block = make_shared<NextBlock>(parent, this, g());
+	const auto block = make_shared<NextBlock>(parent, name, g());
+	// @todo #14 Add difficulty
 	if (block->hash().find("0") == 0) {
 		return block;
 	}

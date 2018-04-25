@@ -9,10 +9,12 @@
 
 class NextBlock final : public Block {
 public:
-	NextBlock(const std::shared_ptr<const Block> &parent, const void *id, int nonce);
+	NextBlock(const std::shared_ptr<const Block> &parent, const std::string &miner, int nonce);
+	size_t number() const override;
 	std::string hash() const override;
+	std::string identity() const override;
 private:
 	const std::shared_ptr<const Block> parent;
-	const void *id;
+	const std::string miner;
 	const int nonce;
 };
