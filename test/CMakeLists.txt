@@ -7,8 +7,8 @@ conan_basic_setup()
 add_executable(
 	selfish_test
 	main.cpp
-	../BaseBlock.cpp
-	BaseBlockTest.cpp
+	../BlockNull.cpp
+	BlockNullTest.cpp
 )
 
 set_target_properties(

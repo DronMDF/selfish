@@ -3,21 +3,21 @@
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
 
-#include "BaseBlock.h"
+#include "BlockNull.h"
 
 using namespace std;
 
-size_t BaseBlock::number() const
+size_t BlockNull::number() const
 {
 	return 0;
 }
 
-string BaseBlock::hash() const
+string BlockNull::hash() const
 {
 	return string(32, '0');
 }
 
-string BaseBlock::identity() const
+string BlockNull::identity() const
 {
 	return "0:" + hash();
 }

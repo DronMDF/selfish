@@ -4,11 +4,11 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "EmptyChain.h"
-#include "BaseBlock.h"
+#include "BlockNull.h"
 
 using namespace std;
 
 vector<shared_ptr<const Block>> EmptyChain::heads() const
 {
-	return { make_shared<BaseBlock>() };
+	return { make_shared<BlockNull>() };
 }

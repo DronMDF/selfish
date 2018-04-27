@@ -9,7 +9,7 @@ conan_basic_setup()
 add_executable(
 	selfish
 	main.cpp
-	BaseBlock.cpp
+	BlockNull.cpp
 	EmptyChain.cpp
 	FairMiner.cpp
 	MinedBlocks.cpp
