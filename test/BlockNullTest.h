@@ -6,9 +6,9 @@
 #include <memory>
 #include <2out/Test.h>
 
-class BaseBlockTest final : public oout::Test {
+class BlockNullTest final : public oout::Test {
 public:
-	BaseBlockTest();
+	BlockNullTest();
 	std::unique_ptr<const oout::Result> result() const override;
 private:
 	const std::unique_ptr<const oout::Test> tests;

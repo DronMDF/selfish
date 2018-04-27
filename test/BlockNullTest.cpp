@@ -3,11 +3,11 @@
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
 
-#include "BaseBlockTest.h"
+#include "BlockNullTest.h"
 #include <2out/Representation.h>
 #include <2out/Result.h>
 #include <2out/TestStartsWith.h>
-#include "../BaseBlock.h"
+#include "../BlockNull.h"
 
 using namespace std;
 using namespace oout;
@@ -27,11 +27,11 @@ private:
 	const shared_ptr<const Block> block;
 };
 
-BaseBlockTest::BaseBlockTest()
+BlockNullTest::BlockNullTest()
 	: tests(
 		make_unique<TestStartsWith>(
 			make_unique<BlockHashRepr>(
-				make_unique<BaseBlock>()
+				make_unique<BlockNull>()
 			),
 			"00000000"
 		)
@@ -39,7 +39,7 @@ BaseBlockTest::BaseBlockTest()
 {
 }
 
-unique_ptr<const Result> BaseBlockTest::result() const
+unique_ptr<const Result> BlockNullTest::result() const
 {
 	return tests->result();
 }

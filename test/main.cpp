@@ -9,7 +9,7 @@
 #include <2out/Result.h>
 #include <2out/TestSuite.h>
 #include <2out/TextReport.h>
-#include "BaseBlockTest.h"
+#include "BlockNullTest.h"
 
 using namespace std;
 using namespace oout;
@@ -17,7 +17,7 @@ using namespace oout;
 int main(int, char **)
 {
 	const TestSuite tests(
-		make_shared<BaseBlockTest>()
+		make_shared<BlockNullTest>()
 	);
 	const shared_ptr<const Result> result = tests.result();
 
