@@ -6,14 +6,19 @@ include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 
 conan_basic_setup()
 
+set(
+	SELFISH_SOURCES
+	${CMAKE_CURRENT_SOURCE_DIR}/BlockNull.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/EmptyChain.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/FairMiner.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/MinedBlocks.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/NextBlock.cpp
+)
+
 add_executable(
 	selfish
 	main.cpp
-	BlockNull.cpp
-	EmptyChain.cpp
-	FairMiner.cpp
-	MinedBlocks.cpp
-	NextBlock.cpp
+	${SELFISH_SOURCES}
 )
 
 set_target_properties(

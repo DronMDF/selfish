@@ -3,12 +3,11 @@ cmake_minimum_required(VERSION 3.5)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-# @todo #14 Find more usable way for share sources beetwen app and test
 add_executable(
 	selfish_test
 	main.cpp
-	../BlockNull.cpp
 	BlockNullTest.cpp
+	${SELFISH_SOURCES}
 )
 
 set_target_properties(
