@@ -13,5 +13,6 @@ class Chain {
 public:
 	virtual ~Chain() = default;
 
+	// @todo #9 heads() should return list of blocks
 	virtual std::vector<std::shared_ptr<const Block>> heads() const = 0;
 };

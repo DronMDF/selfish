@@ -7,7 +7,10 @@
 #include <list>
 #include <memory>
 #include "Block.h"
+#include "ChainFull.h"
+// @todo #9 rename EmptyChain to ChainEmpty
 #include "EmptyChain.h"
+// @todo #9 rename FairMiner to MinerFair
 #include "FairMiner.h"
 #include "MinedBlocks.h"
 
@@ -27,8 +30,7 @@ int main(int, char **)
 			for (const auto &m : mined) {
 				cout << m->identity() << endl;
 			}
-			// @todo #7 Implement chain with blocks
-			//  chain = make_shared<FullChain>(chain, mined);
+			chain = make_shared<ChainFull>(chain, mined);
 		}
 	}
 	return 0;
