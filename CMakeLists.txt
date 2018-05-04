@@ -9,8 +9,8 @@ conan_basic_setup()
 set(
 	SELFISH_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/BlockNull.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/ChainEmpty.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/ChainFull.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/EmptyChain.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/FairMiner.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/MinedBlocks.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/NextBlock.cpp

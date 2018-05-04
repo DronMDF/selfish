@@ -6,7 +6,7 @@
 #pragma once
 #include "Chain.h"
 
-class EmptyChain final : public Chain {
+class ChainEmpty final : public Chain {
 public:
 	std::vector<std::shared_ptr<const Block>> heads() const override;
 };

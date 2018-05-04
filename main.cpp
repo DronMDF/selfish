@@ -7,9 +7,8 @@
 #include <list>
 #include <memory>
 #include "Block.h"
+#include "ChainEmpty.h"
 #include "ChainFull.h"
-// @todo #9 rename EmptyChain to ChainEmpty
-#include "EmptyChain.h"
 // @todo #9 rename FairMiner to MinerFair
 #include "FairMiner.h"
 #include "MinedBlocks.h"
@@ -23,7 +22,7 @@ int main(int, char **)
 		make_shared<FairMiner>("Bob"),
 		make_shared<FairMiner>("Pavel")
 	};
-	shared_ptr<const Chain> chain = make_shared<const EmptyChain>();
+	shared_ptr<const Chain> chain = make_shared<ChainEmpty>();
 	while (true) {
 		const auto mined = MinedBlocks(miners, chain).asList();
 		if (!mined.empty()) {
