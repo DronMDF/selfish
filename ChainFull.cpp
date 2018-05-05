@@ -14,7 +14,7 @@ ChainFull::ChainFull(
 {
 }
 
-vector<shared_ptr<const Block>> ChainFull::heads() const
+list<shared_ptr<const Block>> ChainFull::heads() const
 {
-	return {blocks.begin(), blocks.end()};
+	return blocks;
 }

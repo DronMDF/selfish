@@ -8,5 +8,5 @@
 
 class ChainEmpty final : public Chain {
 public:
-	std::vector<std::shared_ptr<const Block>> heads() const override;
+	std::list<std::shared_ptr<const Block>> heads() const override;
 };

@@ -18,14 +18,16 @@ FairMiner::FairMiner(const string &name)
 
 shared_ptr<Block> FairMiner::mine(const shared_ptr<const Chain> &chain) const
 {
-	auto heads = chain->heads();
+	const auto heads = chain->heads();
+	auto parent = heads.begin();
 
 	random_device rd;
 	mt19937 g(rd());
-	shuffle(heads.begin(), heads.end(), g);
+	normal_distribution<> distribution(0, heads.size() - 1);
+	// @todo #23 Two heads cause segmentation fault, Test needed
+	advance(parent, distribution(g));
 
-	const auto parent = heads.front();
-	const auto block = make_shared<NextBlock>(parent, name, g());
+	const auto block = make_shared<NextBlock>(*parent, name, g());
 	// @todo #14 Add difficulty
 	if (block->hash().find("0") == 0) {
 		return block;

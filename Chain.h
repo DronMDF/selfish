@@ -5,14 +5,12 @@
 
 #pragma once
 #include <memory>
-#include <vector>
+#include <list>
 
 class Block;
 
 class Chain {
 public:
 	virtual ~Chain() = default;
-
-	// @todo #9 heads() should return list of blocks
-	virtual std::vector<std::shared_ptr<const Block>> heads() const = 0;
+	virtual std::list<std::shared_ptr<const Block>> heads() const = 0;
 };

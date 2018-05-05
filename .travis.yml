@@ -107,7 +107,7 @@ before_install:
   - sudo pip install cpplint conan
   - gem install pdd
   - conan remote add dronmdf https://api.bintray.com/conan/mdf/2out
-  - conan install . -s compiler.libcxx='libstdc++11' --build missing
+  - conan install . --build
 
 script:
   - |
