@@ -13,7 +13,7 @@ public:
 		const std::shared_ptr<const Chain> &chain,
 		const std::list<std::shared_ptr<const Block>> &blocks
 	);
-	std::vector<std::shared_ptr<const Block>> heads() const override;
+	std::list<std::shared_ptr<const Block>> heads() const override;
 private:
 	const std::shared_ptr<const Chain> chain;
 	const std::list<std::shared_ptr<const Block>> blocks;

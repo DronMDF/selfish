@@ -8,7 +8,7 @@
 
 using namespace std;
 
-vector<shared_ptr<const Block>> ChainEmpty::heads() const
+list<shared_ptr<const Block>> ChainEmpty::heads() const
 {
-	return { make_shared<BlockNull>() };
+	return {make_shared<BlockNull>()};
 }
