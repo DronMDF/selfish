@@ -7,6 +7,7 @@
 #include "Block.h"
 #include <memory>
 
+// @todo #26 NextBlock should be named BlockNext (prefixed form preferred)
 class NextBlock final : public Block {
 public:
 	NextBlock(const std::shared_ptr<const Block> &parent, const std::string &miner, int nonce);

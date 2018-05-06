@@ -11,6 +11,7 @@ set(
 	${CMAKE_CURRENT_SOURCE_DIR}/BlockNull.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/ChainEmpty.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/ChainFull.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/ChainRandom.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/FairMiner.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/MinedBlocks.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/NextBlock.cpp
