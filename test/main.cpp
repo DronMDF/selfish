@@ -10,6 +10,7 @@
 #include <2out/TestSuite.h>
 #include <2out/TextReport.h>
 #include "BlockNullTest.h"
+#include "ChainRandomTest.h"
 
 using namespace std;
 using namespace oout;
@@ -17,7 +18,8 @@ using namespace oout;
 int main(int, char **)
 {
 	const TestSuite tests(
-		make_shared<BlockNullTest>()
+		make_shared<BlockNullTest>(),
+		make_shared<ChainRandomTest>()
 	);
 	const shared_ptr<const Result> result = tests.result();
 

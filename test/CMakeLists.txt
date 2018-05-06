@@ -7,6 +7,7 @@ add_executable(
 	selfish_test
 	main.cpp
 	BlockNullTest.cpp
+	ChainRandomTest.cpp
 	${SELFISH_SOURCES}
 )
 

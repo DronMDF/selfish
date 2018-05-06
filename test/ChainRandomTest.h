@@ -6,9 +6,9 @@
 #include <memory>
 #include <2out/Test.h>
 
-class BlockNullTest final : public oout::Test {
+class ChainRandomTest final : public oout::Test {
 public:
-	BlockNullTest();
+	ChainRandomTest();
 	std::unique_ptr<const oout::Result> result() const override;
 private:
 	const std::unique_ptr<const oout::Test> tests;
