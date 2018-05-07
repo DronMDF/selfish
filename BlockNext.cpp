@@ -3,13 +3,13 @@
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
 
-#include "NextBlock.h"
+#include "BlockNext.h"
 #include <sstream>
 #include <iomanip>
 
 using namespace std;
 
-NextBlock::NextBlock(
+BlockNext::BlockNext(
 	const shared_ptr<const Block> &parent,
 	const string &miner,
 	const int nonce
@@ -17,12 +17,12 @@ NextBlock::NextBlock(
 {
 }
 
-size_t NextBlock::number() const
+size_t BlockNext::number() const
 {
 	return parent->number() + 1;
 }
 
-string NextBlock::hash() const
+string BlockNext::hash() const
 {
 	// @todo #10 Implement hash alg here
 	ostringstream out;
@@ -30,7 +30,7 @@ string NextBlock::hash() const
 	return out.str();
 }
 
-string NextBlock::identity() const
+string BlockNext::identity() const
 {
 	return to_string(number()) + ":" + hash() + "@" + parent->hash() + " by " + miner;
 }

@@ -6,7 +6,7 @@
 #include "FairMiner.h"
 #include <random>
 #include "ChainRandom.h"
-#include "NextBlock.h"
+#include "BlockNext.h"
 
 using namespace std;
 
@@ -20,7 +20,7 @@ shared_ptr<Block> FairMiner::mine(const shared_ptr<const Chain> &chain) const
 	const auto parent = ChainRandom(chain).heads().front();
 
 	default_random_engine rand(random_device{}());
-	const auto block = make_shared<NextBlock>(parent, name, rand());
+	const auto block = make_shared<BlockNext>(parent, name, rand());
 	// @todo #14 Add difficulty
 	if (block->hash().find("0") == 0) {
 		return block;

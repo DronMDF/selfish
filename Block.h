@@ -13,4 +13,7 @@ public:
 	virtual size_t number() const = 0;
 	virtual std::string hash() const = 0;
 	virtual std::string identity() const = 0;
+	// @todo Block should have getNthParentTime method
+	//  This method goes back to history, give nth parent and return his time.
+	//  This method should work recursyvely. With BlockNull case.
 };
