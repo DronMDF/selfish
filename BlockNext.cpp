@@ -12,8 +12,14 @@ using namespace std;
 BlockNext::BlockNext(
 	const shared_ptr<const Block> &parent,
 	const string &miner,
-	const int nonce
-) : timestamp(chrono::high_resolution_clock::now()), parent(parent), miner(miner), nonce(nonce)
+	const int nonce,
+	const int dvalue
+) :
+	timestamp(chrono::high_resolution_clock::now()),
+	parent(parent),
+	miner(miner),
+	nonce(nonce),
+	dvalue(dvalue)
 {
 }
 
@@ -38,4 +44,9 @@ string BlockNext::identity() const
 chrono::high_resolution_clock::time_point BlockNext::getNthParentTime(size_t n) const
 {
 	return n > 0 ? parent->getNthParentTime(n - 1) : timestamp;
+}
+
+int BlockNext::difficulty() const
+{
+	return dvalue;
 }

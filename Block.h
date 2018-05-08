@@ -16,4 +16,6 @@ public:
 	virtual std::string identity() const = 0;
 	/// Time of generation nth parent (0 - self time)
 	virtual std::chrono::high_resolution_clock::time_point getNthParentTime(size_t n) const = 0;
+	/// Block difficulty
+	virtual int difficulty() const = 0;
 };

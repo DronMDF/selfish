@@ -25,3 +25,8 @@ list<shared_ptr<const Block>> ChainRandom::heads() const
 	advance(parent, generator() % heads.size());
 	return {*parent};
 }
+
+int ChainRandom::difficulty() const
+{
+	return chain->difficulty();
+}
