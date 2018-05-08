@@ -13,7 +13,7 @@ BlockNext::BlockNext(
 	const shared_ptr<const Block> &parent,
 	const string &miner,
 	const int nonce
-) : parent(parent), miner(miner), nonce(nonce)
+) : timestamp(chrono::high_resolution_clock::now()), parent(parent), miner(miner), nonce(nonce)
 {
 }
 
@@ -33,4 +33,9 @@ string BlockNext::hash() const
 string BlockNext::identity() const
 {
 	return to_string(number()) + ":" + hash() + "@" + parent->hash() + " by " + miner;
+}
+
+chrono::high_resolution_clock::time_point BlockNext::getNthParentTime(size_t n) const
+{
+	return n > 0 ? parent->getNthParentTime(n - 1) : timestamp;
 }
