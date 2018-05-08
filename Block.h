@@ -4,6 +4,7 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #pragma once
+#include <chrono>
 #include <string>
 
 class Block {
@@ -13,7 +14,6 @@ public:
 	virtual size_t number() const = 0;
 	virtual std::string hash() const = 0;
 	virtual std::string identity() const = 0;
-	// @todo #28 Block should have getNthParentTime method
-	//  This method goes back to history, give nth parent and return his time.
-	//  This method should work recursyvely. With BlockNull case.
+	/// Time of generation nth parent (0 - self time)
+	virtual std::chrono::high_resolution_clock::time_point getNthParentTime(size_t n) const = 0;
 };

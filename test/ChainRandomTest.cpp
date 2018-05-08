@@ -36,6 +36,12 @@ public:
 	{
 		return id;
 	}
+
+	chrono::high_resolution_clock::time_point getNthParentTime(size_t n) const override
+	{
+		return chrono::high_resolution_clock::now();
+	}
+
 private:
 	const string id;
 };

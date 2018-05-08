@@ -7,6 +7,11 @@
 
 using namespace std;
 
+BlockNull::BlockNull()
+	: timestamp(chrono::high_resolution_clock::now())
+{
+}
+
 size_t BlockNull::number() const
 {
 	return 0;
@@ -20,4 +25,9 @@ string BlockNull::hash() const
 string BlockNull::identity() const
 {
 	return "0:" + hash();
+}
+
+chrono::high_resolution_clock::time_point BlockNull::getNthParentTime(size_t n) const
+{
+	return timestamp;
 }

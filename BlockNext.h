@@ -13,7 +13,9 @@ public:
 	size_t number() const override;
 	std::string hash() const override;
 	std::string identity() const override;
+	std::chrono::high_resolution_clock::time_point getNthParentTime(size_t n) const override;
 private:
+	const std::chrono::high_resolution_clock::time_point timestamp;
 	const std::shared_ptr<const Block> parent;
 	const std::string miner;
 	const int nonce;
