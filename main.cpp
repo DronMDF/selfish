@@ -27,9 +27,11 @@ int main(int, char **)
 		const auto mined = MinedBlocks(miners, chain).asList();
 		if (!mined.empty()) {
 			for (const auto &m : mined) {
+				// @todo #16 Show timestamp for each entry.
 				cout << m->identity() << endl;
 			}
 			chain = make_shared<ChainFull>(chain, mined);
+			// @todo #16 Show miner amounts
 		}
 	}
 	return 0;

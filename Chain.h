@@ -13,4 +13,6 @@ class Chain {
 public:
 	virtual ~Chain() = default;
 	virtual std::list<std::shared_ptr<const Block>> heads() const = 0;
+	// Current chain difficulty
+	virtual int difficulty() const = 0;
 };

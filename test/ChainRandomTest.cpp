@@ -42,6 +42,11 @@ public:
 		return chrono::high_resolution_clock::now();
 	}
 
+	int difficulty() const override
+	{
+		return 0;
+	}
+
 private:
 	const string id;
 };

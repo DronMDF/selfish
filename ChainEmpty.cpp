@@ -12,3 +12,8 @@ list<shared_ptr<const Block>> ChainEmpty::heads() const
 {
 	return {make_shared<BlockNull>()};
 }
+
+int ChainEmpty::difficulty() const
+{
+	return 0;
+}

@@ -9,4 +9,5 @@
 class ChainEmpty final : public Chain {
 public:
 	std::list<std::shared_ptr<const Block>> heads() const override;
+	int difficulty() const override;
 };

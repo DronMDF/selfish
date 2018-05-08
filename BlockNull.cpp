@@ -31,3 +31,8 @@ chrono::high_resolution_clock::time_point BlockNull::getNthParentTime(size_t n) 
 {
 	return timestamp;
 }
+
+int BlockNull::difficulty() const
+{
+	return 0;
+}

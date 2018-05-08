@@ -14,6 +14,7 @@ public:
 	std::string hash() const override;
 	std::string identity() const override;
 	std::chrono::high_resolution_clock::time_point getNthParentTime(size_t n) const override;
+	int difficulty() const override;
 private:
 	const std::chrono::high_resolution_clock::time_point timestamp;
 };

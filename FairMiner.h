@@ -12,4 +12,5 @@ public:
 	std::shared_ptr<Block> mine(const std::shared_ptr<const Chain> &chain) const override;
 private:
 	const std::string name;
+	int difficulty(const std::shared_ptr<const Block> &block) const;
 };

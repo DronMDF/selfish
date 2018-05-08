@@ -15,6 +15,7 @@ public:
 	explicit ChainRandom(const std::shared_ptr<const Chain> &chain);
 
 	std::list<std::shared_ptr<const Block>> heads() const override;
+	int difficulty() const override;
 private:
 	const std::shared_ptr<const Chain> chain;
 	const std::function<int()> generator;

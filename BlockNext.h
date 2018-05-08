@@ -9,14 +9,21 @@
 
 class BlockNext final : public Block {
 public:
-	BlockNext(const std::shared_ptr<const Block> &parent, const std::string &miner, int nonce);
+	BlockNext(
+		const std::shared_ptr<const Block> &parent,
+		const std::string &miner,
+		int nonce,
+		int dvalue
+	);
 	size_t number() const override;
 	std::string hash() const override;
 	std::string identity() const override;
 	std::chrono::high_resolution_clock::time_point getNthParentTime(size_t n) const override;
+	int difficulty() const override;
 private:
 	const std::chrono::high_resolution_clock::time_point timestamp;
 	const std::shared_ptr<const Block> parent;
 	const std::string miner;
 	const int nonce;
+	const int dvalue;
 };
