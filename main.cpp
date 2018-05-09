@@ -31,7 +31,11 @@ int main(int, char **)
 				cout << m->identity() << endl;
 			}
 			chain = make_shared<ChainFull>(chain, mined);
-			// @todo #16 Show miner amounts
+			cout << "Amount: ";
+			for (const auto &miner : miners) {
+				cout << miner->name() << ": " << miner->amount(chain) << ", ";
+			}
+			cout << endl;
 		}
 	}
 	return 0;

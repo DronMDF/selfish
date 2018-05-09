@@ -12,5 +12,7 @@ class Chain;
 class Miner {
 public:
 	virtual ~Miner() = default;
+	virtual std::string name() const = 0;
 	virtual std::shared_ptr<Block> mine(const std::shared_ptr<const Chain> &chain) const = 0;
+	virtual int amount(const std::shared_ptr<const Chain> &chain) const = 0;
 };
