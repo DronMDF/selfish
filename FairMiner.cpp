@@ -12,8 +12,13 @@
 using namespace std;
 
 FairMiner::FairMiner(const string &name)
-	: name(name)
+	: user(name)
 {
+}
+
+string FairMiner::name() const
+{
+	return user;
 }
 
 // @todo #16 This code should not be here, This is another class Difficulty
@@ -38,9 +43,14 @@ shared_ptr<Block> FairMiner::mine(const shared_ptr<const Chain> &chain) const
 	const auto parent = ChainRandom(chain).heads().front();
 
 	default_random_engine rand(random_device{}());
-	const auto block = make_shared<BlockNext>(parent, name, rand(), chain->difficulty());
+	const auto block = make_shared<BlockNext>(parent, user, rand(), chain->difficulty());
 	if (difficulty(block) >= chain->difficulty()) {
 		return block;
 	}
 	return {};
+}
+
+int FairMiner::amount(const shared_ptr<const Chain> &chain) const
+{
+	return chain->heads().front()->amount(user);
 }

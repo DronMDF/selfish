@@ -18,4 +18,6 @@ public:
 	virtual std::chrono::high_resolution_clock::time_point getNthParentTime(size_t n) const = 0;
 	/// Block difficulty
 	virtual int difficulty() const = 0;
+	/// Get user amount
+	virtual int amount(const std::string &user) const = 0;
 };
