@@ -22,16 +22,17 @@ list<shared_ptr<const Block>> ChainFull::heads() const
 
 int ChainFull::difficulty() const
 {
-	// @todo #16 Test this class. distribution of block is very unevennessed
 	// @todo #16 Disable negative difficulty
-	const auto first = blocks.front()->getNthParentTime(60);
-	const auto last = blocks.front()->getNthParentTime(0);
-	const auto interval = last - first;
 	auto difficult = blocks.front()->difficulty();
-	if (interval < chrono::seconds(30)) {
-		difficult++;
-	} else if (interval > chrono::seconds(120)) {
-		difficult--;
+	if (blocks.front()->difficultySeries() > 60) {
+		const auto first = blocks.front()->getNthParentTime(60);
+		const auto last = blocks.front()->getNthParentTime(0);
+		const auto interval = last - first;
+		if (interval < chrono::seconds(30)) {
+			difficult++;
+		} else if (interval > chrono::seconds(90)) {
+			difficult--;
+		}
 	}
 	return difficult;
 }

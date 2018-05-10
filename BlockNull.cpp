@@ -37,6 +37,11 @@ int BlockNull::difficulty() const
 	return 0;
 }
 
+int BlockNull::difficultySeries() const
+{
+	return 0;
+}
+
 int BlockNull::amount(const string &) const
 {
 	return 0;
