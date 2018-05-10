@@ -47,6 +47,11 @@ public:
 		return 0;
 	}
 
+	int difficultySeries() const override
+	{
+		return 0;
+	}
+
 	int amount(const string &) const override
 	{
 		return 0;
