@@ -30,9 +30,10 @@ size_t BlockNext::number() const
 
 string BlockNext::hash() const
 {
-	// @todo #10 Implement hash alg here
+	// @todo #12 Using GOST hash alg here
+	const auto hash = std::hash<string>()(parent->hash() + to_string(nonce) + miner);
 	ostringstream out;
-	out << hex << setfill('0') << setw(8) << nonce;
+	out << hex << setfill('0') << setw(16) << hash;
 	return out.str();
 }
 
