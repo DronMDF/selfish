@@ -7,22 +7,26 @@
 #include "Block.h"
 #include <functional>
 #include <memory>
-#include <optional>
 
 template<typename T>
 class CachedValue final {
 public:
+	CachedValue()
+		: is_initialized(false)
+	{
+	}
+
 	T value(const std::function<T()> &get)
 	{
-		if (!cache.has_value()) {
+		if (!is_initialized) {
 			cache = get();
 		}
-		return cache.value();
+		return cache;
 	}
 
 private:
-	const std::function<T()> get;
-	std::optional<T> cache;
+	bool is_initialized;
+	T cache;
 };
 
 class BlockCache final : public Block {
