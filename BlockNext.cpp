@@ -6,6 +6,7 @@
 #include "BlockNext.h"
 #include <sstream>
 #include <iomanip>
+#include "BlockCache.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ BlockNext::BlockNext(
 	const int dvalue
 ) :
 	timestamp(chrono::high_resolution_clock::now()),
-	parent(parent),
+	parent(make_shared<BlockCache>(parent)),
 	miner(miner),
 	nonce(nonce),
 	dvalue(dvalue)
@@ -28,8 +29,6 @@ size_t BlockNext::number() const
 	return parent->number() + 1;
 }
 
-// @todo #12 hash is a recursively hard operation thught all chain
-//  Need to use BlockCache for keep cache from parents...
 string BlockNext::hash() const
 {
 	// @todo #12 Using GOST hash alg here
