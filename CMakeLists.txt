@@ -9,6 +9,7 @@ conan_basic_setup()
 set(
 	SELFISH_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/BlockCache.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/BlockDifficulty.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/BlockNext.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/BlockNull.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/ChainEmpty.cpp
