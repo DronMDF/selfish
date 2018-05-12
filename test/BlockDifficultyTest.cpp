@@ -54,7 +54,7 @@ BlockDifficultyTest::BlockDifficultyTest()
 						)
 					)
 				),
-				"5"
+				"2"
 			)
 		)
 	)
