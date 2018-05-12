@@ -4,8 +4,7 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "BlockDifficulty.h"
-#include <iomanip>
-#include <sstream>
+#include <map>
 #include "Block.h"
 
 using namespace std;
@@ -17,15 +16,21 @@ BlockDifficulty::BlockDifficulty(const shared_ptr<const Block> &block)
 
 int BlockDifficulty::value() const
 {
-	uint64_t value;
-	istringstream in(block->hash());
-	// @todo #16 Avoid 31bit lock
-	in >> hex >> setw(8) >> setfill('0') >> value;
+	const auto hash = block->hash();
+	const map<char, int> zeros = {
+		{'0', 4},
+		{'1', 3},
+		{'2', 2}, {'3', 2},
+		{'4', 1}, {'5', 1}, {'6', 1}, {'7', 1}
+	};
 	int difficulty = 0;
-	if (value > 0) {
-		while ((value & (1LLU << 31)) == 0) {
-			difficulty++;
-			value <<= 1;
+	for (const auto &c: hash) {
+		if (zeros.count(c) == 0) {
+			break;
+		}
+		difficulty += zeros.at(c);
+		if (c != '0') {
+			break;
 		}
 	}
 	return difficulty;
