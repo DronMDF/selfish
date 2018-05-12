@@ -24,7 +24,7 @@ int BlockDifficulty::value() const
 		{'4', 1}, {'5', 1}, {'6', 1}, {'7', 1}
 	};
 	int difficulty = 0;
-	for (const auto &c: hash) {
+	for (const auto &c : hash) {
 		if (zeros.count(c) == 0) {
 			break;
 		}
