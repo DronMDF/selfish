@@ -13,9 +13,9 @@
 using namespace std;
 using namespace oout;
 
-class BlockDifficultyRepr final : public Representation {
+class BlockNextDifficultyRepr final : public Representation {
 public:
-	explicit BlockDifficultyRepr(const shared_ptr<const Block> &block)
+	explicit BlockNextDifficultyRepr(const shared_ptr<const Block> &block)
 		: block(block)
 	{
 	}
@@ -31,7 +31,7 @@ private:
 BlockNextTest::BlockNextTest()
 	: tests(
 		make_unique<TestEqual>(
-			make_shared<BlockDifficultyRepr>(
+			make_shared<BlockNextDifficultyRepr>(
 				make_shared<BlockNext>(shared_ptr<Block>{}, "", 0x7fffffff, 7)
 			),
 			"7"
