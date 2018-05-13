@@ -3,7 +3,7 @@
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
 
-#include "FairMiner.h"
+#include "MinerFair.h"
 #include <random>
 #include "ChainRandom.h"
 #include "BlockDifficulty.h"
@@ -11,17 +11,17 @@
 
 using namespace std;
 
-FairMiner::FairMiner(const string &name)
+MinerFair::MinerFair(const string &name)
 	: user(name)
 {
 }
 
-string FairMiner::name() const
+string MinerFair::name() const
 {
 	return user;
 }
 
-shared_ptr<Block> FairMiner::mine(const shared_ptr<const Chain> &chain) const
+shared_ptr<Block> MinerFair::mine(const shared_ptr<const Chain> &chain) const
 {
 	const auto parent = ChainRandom(chain).heads().front();
 
@@ -33,7 +33,7 @@ shared_ptr<Block> FairMiner::mine(const shared_ptr<const Chain> &chain) const
 	return {};
 }
 
-int FairMiner::amount(const shared_ptr<const Chain> &chain) const
+int MinerFair::amount(const shared_ptr<const Chain> &chain) const
 {
 	return chain->heads().front()->amount(user);
 }

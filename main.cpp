@@ -9,18 +9,21 @@
 #include "Block.h"
 #include "ChainEmpty.h"
 #include "ChainFull.h"
-// @todo #9 rename FairMiner to MinerFair
-#include "FairMiner.h"
 #include "MinedBlocks.h"
+#include "MinerFair.h"
 
 using namespace std;
 
 int main(int, char **)
 {
+	// @todo #22 Add MinerConcerned whoes prefers self block
+	//  is all block from othre - behaves like a fair
+	// @todo #22 Add MinerSelfish whoes mine inside
+	//  until someone else finds the next block.
 	const list<shared_ptr<const Miner>> miners = {
-		make_shared<FairMiner>("Alice"),
-		make_shared<FairMiner>("Bob"),
-		make_shared<FairMiner>("Pavel")
+		make_shared<MinerFair>("Alice"),
+		make_shared<MinerFair>("Bob"),
+		make_shared<MinerFair>("Pavel")
 	};
 	shared_ptr<const Chain> chain = make_shared<ChainEmpty>();
 	while (true) {

@@ -9,3 +9,5 @@ cpplint *.cpp test/*.cpp
 
 # Check pdd tokens
 pdd > /dev/null
+
+echo Clean
