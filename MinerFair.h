@@ -6,13 +6,12 @@
 #pragma once
 #include "Miner.h"
 
-class FairMiner final : public Miner {
+class MinerFair final : public Miner {
 public:
-	explicit FairMiner(const std::string &name);
+	explicit MinerFair(const std::string &name);
 	std::string name() const override;
 	std::shared_ptr<Block> mine(const std::shared_ptr<const Chain> &chain) const override;
 	int amount(const std::shared_ptr<const Chain> &chain) const override;
 private:
 	const std::string user;
-	int difficulty(const std::shared_ptr<const Block> &block) const;
 };
