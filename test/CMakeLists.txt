@@ -6,6 +6,7 @@ conan_basic_setup()
 add_executable(
 	selfish_test
 	main.cpp
+	BlockCacheTest.cpp
 	BlockDifficultyTest.cpp
 	BlockNextTest.cpp
 	BlockNullTest.cpp

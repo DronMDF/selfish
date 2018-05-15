@@ -20,6 +20,7 @@ public:
 	{
 		if (!is_initialized) {
 			cache = get();
+			is_initialized = true;
 		}
 		return cache;
 	}

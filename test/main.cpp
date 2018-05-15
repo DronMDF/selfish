@@ -9,6 +9,7 @@
 #include <2out/Result.h>
 #include <2out/TestSuite.h>
 #include <2out/TextReport.h>
+#include "BlockCacheTest.h"
 #include "BlockDifficultyTest.h"
 #include "BlockNextTest.h"
 #include "BlockNullTest.h"
@@ -20,6 +21,7 @@ using namespace oout;
 int main(int, char **)
 {
 	const TestSuite tests(
+		make_shared<BlockCacheTest>(),
 		make_shared<BlockDifficultyTest>(),
 		make_shared<BlockNextTest>(),
 		make_shared<BlockNullTest>(),
