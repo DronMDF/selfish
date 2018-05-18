@@ -9,13 +9,13 @@
 
 class ChainFull final : public Chain {
 public:
-	ChainFull(
-		const std::shared_ptr<const Chain> &chain,
-		const std::list<std::shared_ptr<const Block>> &blocks
-	);
-	std::list<std::shared_ptr<const Block>> heads() const override;
+	explicit ChainFull(const std::list<std::shared_ptr<const Block>> &blocks);
+
 	int difficulty() const override;
+	std::shared_ptr<const Chain> mine(
+		const std::list<std::shared_ptr<const Miner>> &miners
+	) const override;
+	int amount(const std::shared_ptr<const Miner> &miner) const override;
 private:
-	const std::shared_ptr<const Chain> chain;
 	const std::list<std::shared_ptr<const Block>> blocks;
 };

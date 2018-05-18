@@ -9,7 +9,6 @@
 #include "Block.h"
 #include "ChainEmpty.h"
 #include "ChainFull.h"
-#include "MinedBlocks.h"
 #include "MinerFair.h"
 
 using namespace std;
@@ -27,19 +26,11 @@ int main(int, char **)
 	};
 	shared_ptr<const Chain> chain = make_shared<ChainEmpty>();
 	while (true) {
-		const auto mined = MinedBlocks(miners, chain).asList();
-		if (!mined.empty()) {
-			for (const auto &m : mined) {
-				// @todo #16 Show timestamp for each entry.
-				cout << m->identity() << endl;
-			}
-			chain = make_shared<ChainFull>(chain, mined);
-			cout << "Amount: ";
-			for (const auto &miner : miners) {
-				cout << miner->name() << ": " << miner->amount(chain) << ", ";
-			}
-			cout << endl;
+		chain = chain->mine(miners);
+		for (const auto &miner : miners) {
+			cout << miner->name() << ": " << chain->amount(miner) << ", ";
 		}
+		cout << endl;
 	}
 	return 0;
 }

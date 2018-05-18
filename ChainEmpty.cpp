@@ -4,16 +4,31 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "ChainEmpty.h"
+#include <iostream>
 #include "BlockNull.h"
+#include "ChainFull.h"
+#include "Miner.h"
 
 using namespace std;
 
-list<shared_ptr<const Block>> ChainEmpty::heads() const
+int ChainEmpty::difficulty() const
 {
-	return {make_shared<BlockNull>()};
+	return 0;
 }
 
-int ChainEmpty::difficulty() const
+shared_ptr<const Chain> ChainEmpty::mine(const list<shared_ptr<const Miner>> &miners) const
+{
+	const list<shared_ptr<const Block>> blocks = {make_shared<BlockNull>()};
+	list<shared_ptr<const Block>> mined;
+	for (const auto &m : miners) {
+		const auto block = m->mine(blocks, 0);
+		mined.push_back(block);
+		cout << block->identity() << endl;
+	}
+	return make_shared<ChainFull>(mined);
+}
+
+int ChainEmpty::amount(const std::shared_ptr<const Miner> &) const
 {
 	return 0;
 }

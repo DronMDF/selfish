@@ -13,7 +13,6 @@
 #include "BlockDifficultyTest.h"
 #include "BlockNextTest.h"
 #include "BlockNullTest.h"
-#include "ChainRandomTest.h"
 
 using namespace std;
 using namespace oout;
@@ -24,8 +23,7 @@ int main(int, char **)
 		make_shared<BlockCacheTest>(),
 		make_shared<BlockDifficultyTest>(),
 		make_shared<BlockNextTest>(),
-		make_shared<BlockNullTest>(),
-		make_shared<ChainRandomTest>()
+		make_shared<BlockNullTest>()
 	);
 	const shared_ptr<const Result> result = tests.result();
 
