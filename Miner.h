@@ -4,6 +4,7 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #pragma once
+#include <list>
 #include <memory>
 
 class Block;
@@ -13,6 +14,8 @@ class Miner {
 public:
 	virtual ~Miner() = default;
 	virtual std::string name() const = 0;
-	virtual std::shared_ptr<Block> mine(const std::shared_ptr<const Chain> &chain) const = 0;
-	virtual int amount(const std::shared_ptr<const Chain> &chain) const = 0;
+	virtual std::shared_ptr<Block> mine(
+		const std::list<std::shared_ptr<const Block>> &heads,
+		int difficulty
+	) const = 0;
 };

@@ -10,7 +10,6 @@ add_executable(
 	BlockDifficultyTest.cpp
 	BlockNextTest.cpp
 	BlockNullTest.cpp
-	ChainRandomTest.cpp
 	${SELFISH_SOURCES}
 )
 

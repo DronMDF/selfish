@@ -5,9 +5,9 @@
 
 #include "MinerFair.h"
 #include <random>
-#include "ChainRandom.h"
 #include "BlockDifficulty.h"
 #include "BlockNext.h"
+#include "Chain.h"
 
 using namespace std;
 
@@ -21,19 +21,10 @@ string MinerFair::name() const
 	return user;
 }
 
-shared_ptr<Block> MinerFair::mine(const shared_ptr<const Chain> &chain) const
+shared_ptr<Block> MinerFair::mine(const list<shared_ptr<const Block>> &heads, int difficulty) const
 {
-	const auto parent = ChainRandom(chain).heads().front();
-
 	default_random_engine rand(random_device{}());
-	const auto block = make_shared<BlockNext>(parent, user, rand(), chain->difficulty());
-	if (BlockDifficulty(block).value() >= chain->difficulty()) {
-		return block;
-	}
-	return {};
-}
-
-int MinerFair::amount(const shared_ptr<const Chain> &chain) const
-{
-	return chain->heads().front()->amount(user);
+	auto head = heads.begin();
+	advance(head, rand() % heads.size());
+	return make_shared<BlockNext>(*head, user, rand(), difficulty);
 }
