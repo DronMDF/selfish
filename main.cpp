@@ -6,6 +6,7 @@
 #include <iostream>
 #include <list>
 #include <memory>
+#include <random>
 #include "Block.h"
 #include "ChainEmpty.h"
 #include "ChainFull.h"
@@ -15,14 +16,15 @@ using namespace std;
 
 int main(int, char **)
 {
+	auto random = make_shared<default_random_engine>(random_device{}());
 	// @todo #22 Add MinerConcerned whoes prefers self block
 	//  is all block from othre - behaves like a fair
 	// @todo #22 Add MinerSelfish whoes mine inside
 	//  until someone else finds the next block.
 	const list<shared_ptr<const Miner>> miners = {
-		make_shared<MinerFair>("Alice"),
-		make_shared<MinerFair>("Bob"),
-		make_shared<MinerFair>("Pavel")
+		make_shared<MinerFair>("Alice", random),
+		make_shared<MinerFair>("Bob", random),
+		make_shared<MinerFair>("Pavel", random)
 	};
 	shared_ptr<const Chain> chain = make_shared<ChainEmpty>();
 	while (true) {

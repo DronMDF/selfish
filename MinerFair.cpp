@@ -11,8 +11,9 @@
 
 using namespace std;
 
-MinerFair::MinerFair(const string &name)
-	: user(name)
+// @todo #60 Need to wrap default_random_engine for testing
+MinerFair::MinerFair(const string &name, const shared_ptr<default_random_engine> &random)
+	: user(name), random(random)
 {
 }
 
@@ -23,8 +24,7 @@ string MinerFair::name() const
 
 shared_ptr<Block> MinerFair::mine(const list<shared_ptr<const Block>> &heads, int difficulty) const
 {
-	default_random_engine rand(random_device{}());
 	auto head = heads.begin();
-	advance(head, rand() % heads.size());
-	return make_shared<BlockNext>(*head, user, rand(), difficulty);
+	advance(head, (*random)() % heads.size());
+	return make_shared<BlockNext>(*head, user, (*random)(), difficulty);
 }
