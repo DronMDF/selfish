@@ -26,9 +26,9 @@ shared_ptr<Block> MinerConcerned::mine(const list<shared_ptr<const Block>> &head
 		heads.begin(),
 		heads.end(),
 		back_inserter(my_heads),
-		[&miner](const auto &b){
+		[this](const auto &b){
 			// @todo #51 Block do not provide method for check author
-			return b->identity().find(miner->name()) != string::npos;
+			return b->identity().find(this->name()) != string::npos;
 		}
 	);
 	return miner->mine(my_heads.empty() ? heads : my_heads, difficulty);
