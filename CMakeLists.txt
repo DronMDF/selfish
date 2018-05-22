@@ -14,6 +14,7 @@ set(
 	${CMAKE_CURRENT_SOURCE_DIR}/BlockNull.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/ChainEmpty.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/ChainFull.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/MinerChainer.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/MinerConcerned.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/MinerFair.cpp
 )
