@@ -7,11 +7,7 @@
 #include "Miner.h"
 #include <queue>
 
-// @todo #52 add chance to append block to train.
-//  If chain is growth - Selfish miner want to apperd he head to chain.
-//  And he do it block by block.
-
-// This is selfish miner whoes try produce longest chain.
+// This is selfish miner wait for other block
 class MinerSelfish final : public Miner {
 public:
 	explicit MinerSelfish(const std::shared_ptr<const Miner> &miner);
