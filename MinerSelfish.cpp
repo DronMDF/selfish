@@ -21,36 +21,32 @@ string MinerSelfish::name() const
 	return miner->name();
 }
 
-shared_ptr<Block> MinerSelfish::mine(const list<shared_ptr<const Block>> &heads, int difficulty) const
+shared_ptr<const Block> MinerSelfish::mine(const list<shared_ptr<const Block>> &heads, int difficulty) const
 {
-	if (mined->block) {
-		for (const auto &b : heads) {
-			if (b->hash() == mined->block->hash()) {
-				// approved
-				mined->block.reset();
-			}
-		}
-		if (mined->block && mined->block->number() < heads.front()->number()) {
-			mined->block.reset();
-		}
-	}
-	if (mined->block) {
-		const auto block = miner->mine({mined->block}, difficulty);
-		if (BlockDifficulty(block).value() >= difficulty) {
-			// move forward
-			mined->block = block;
-		}
-		if (block->number() > heads.front()->number()) {
-			return block;
-		}
+	shared_ptr<const Block> block;
+	if (mined->blocks.empty()) {
+		block = miner->mine(heads, difficulty);
 	} else {
-		const auto block = miner->mine(heads, difficulty);
-		if (BlockDifficulty(block).value() < difficulty) {
-			return block;
-		}
-		// Block found - remember
-		mined->block = block;
+		block = miner->mine({mined->blocks.back()}, difficulty);
 	}
-	// return fake
-	return make_shared<BlockNext>(heads.front(), name(), 0, difficulty);
+	if (BlockDifficulty(block).value() >= difficulty) {
+		mined->blocks.push(block);
+	}
+	return {};
+}
+
+shared_ptr<const Block> MinerSelfish::postmine(
+	const list<shared_ptr<const Block>> &heads,
+	int difficulty
+) const
+{
+	if (!mined->blocks.empty()) {
+		const auto block = mined->blocks.front();
+		if (block->number() != heads.front()->number() + 1) {
+			throw runtime_error("Wrong blocks");
+		}
+		mined->blocks.pop();
+		return block;
+	}
+	return miner->postmine(heads, difficulty);
 }

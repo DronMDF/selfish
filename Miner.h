@@ -14,7 +14,11 @@ class Miner {
 public:
 	virtual ~Miner() = default;
 	virtual std::string name() const = 0;
-	virtual std::shared_ptr<Block> mine(
+	virtual std::shared_ptr<const Block> mine(
+		const std::list<std::shared_ptr<const Block>> &heads,
+		int difficulty
+	) const = 0;
+	virtual std::shared_ptr<const Block> postmine(
 		const std::list<std::shared_ptr<const Block>> &heads,
 		int difficulty
 	) const = 0;

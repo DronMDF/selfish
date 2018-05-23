@@ -22,9 +22,20 @@ string MinerFair::name() const
 	return user;
 }
 
-shared_ptr<Block> MinerFair::mine(const list<shared_ptr<const Block>> &heads, int difficulty) const
+shared_ptr<const Block> MinerFair::mine(
+	const list<shared_ptr<const Block>> &heads,
+	int difficulty
+) const
 {
 	auto head = heads.begin();
 	advance(head, (*random)() % heads.size());
 	return make_shared<BlockNext>(*head, user, (*random)(), difficulty);
+}
+
+shared_ptr<const Block> MinerFair::postmine(
+	const list<shared_ptr<const Block>> &heads,
+	int difficulty
+) const
+{
+	return {};
 }

@@ -40,13 +40,20 @@ shared_ptr<const Chain> ChainFull::mine(const list<shared_ptr<const Miner>> &min
 		list<shared_ptr<const Block>> mined;
 		for (const auto &m : miners) {
 			const auto block = m->mine(blocks, dif);
-			if (BlockDifficulty(block).value() >= dif) {
+			if (block && BlockDifficulty(block).value() >= dif) {
 				mined.push_back(block);
 				// @todo #16 Show timestamp for each entry.
 				cout << block->identity() << endl;
 			}
 		}
 		if (!mined.empty()) {
+			for (const auto &m : miners) {
+				const auto block = m->postmine(blocks, dif);
+				if (block && BlockDifficulty(block).value() >= dif) {
+					mined.push_back(block);
+					cout << block->identity() << " post mined" << endl;
+				}
+			}
 			return make_shared<ChainFull>(mined);
 		}
 	}
