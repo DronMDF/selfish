@@ -3,7 +3,7 @@
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
 
-#include "MinerChainer.h"
+#include "MinerSelfish.h"
 #include <algorithm>
 #include "Block.h"
 #include "BlockDifficulty.h"
@@ -11,17 +11,17 @@
 
 using namespace std;
 
-MinerChainer::MinerChainer(const shared_ptr<const Miner> &miner)
+MinerSelfish::MinerSelfish(const shared_ptr<const Miner> &miner)
 	: miner(miner), mined(make_shared<BlockHolder>())
 {
 }
 
-string MinerChainer::name() const
+string MinerSelfish::name() const
 {
 	return miner->name();
 }
 
-shared_ptr<Block> MinerChainer::mine(const list<shared_ptr<const Block>> &heads, int difficulty) const
+shared_ptr<Block> MinerSelfish::mine(const list<shared_ptr<const Block>> &heads, int difficulty) const
 {
 	if (mined->block) {
 		for (const auto &b : heads) {

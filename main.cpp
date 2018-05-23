@@ -10,9 +10,9 @@
 #include "Block.h"
 #include "ChainEmpty.h"
 #include "ChainFull.h"
-#include "MinerChainer.h"
 #include "MinerConcerned.h"
 #include "MinerFair.h"
+#include "MinerSelfish.h"
 
 using namespace std;
 
@@ -22,7 +22,7 @@ int main(int, char **)
 	const list<shared_ptr<const Miner>> miners = {
 		make_shared<MinerFair>("Alice", random),
 		make_shared<MinerFair>("Bob", random),
-		make_shared<MinerChainer>(
+		make_shared<MinerSelfish>(
 			make_shared<MinerConcerned>(
 				make_shared<MinerFair>("Pavel", random)
 			)

@@ -11,9 +11,9 @@
 //  And he do it block by block.
 
 // This is selfish miner whoes try produce longest chain.
-class MinerChainer final : public Miner {
+class MinerSelfish final : public Miner {
 public:
-	explicit MinerChainer(const std::shared_ptr<const Miner> &miner);
+	explicit MinerSelfish(const std::shared_ptr<const Miner> &miner);
 	std::string name() const override;
 	std::shared_ptr<Block> mine(
 		const std::list<std::shared_ptr<const Block>> &heads,
