@@ -22,8 +22,19 @@ shared_ptr<const Chain> ChainEmpty::mine(const list<shared_ptr<const Miner>> &mi
 	list<shared_ptr<const Block>> mined;
 	for (const auto &m : miners) {
 		const auto block = m->mine(blocks, 0);
-		mined.push_back(block);
-		cout << block->identity() << endl;
+		if (block) {
+			mined.push_back(block);
+			cout << block->identity() << endl;
+		}
+	}
+	if (!mined.empty()) {
+		for (const auto &m : miners) {
+			const auto block = m->postmine(blocks, 0);
+			if (block) {
+				mined.push_back(block);
+				cout << block->identity() << endl;
+			}
+		}
 	}
 	return make_shared<ChainFull>(mined);
 }

@@ -14,7 +14,11 @@ public:
 		const std::shared_ptr<std::default_random_engine> &random
 	);
 	std::string name() const override;
-	std::shared_ptr<Block> mine(
+	std::shared_ptr<const Block> mine(
+		const std::list<std::shared_ptr<const Block>> &heads,
+		int difficulty
+	) const override;
+	std::shared_ptr<const Block> postmine(
 		const std::list<std::shared_ptr<const Block>> &heads,
 		int difficulty
 	) const override;

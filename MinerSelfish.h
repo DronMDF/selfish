@@ -5,17 +5,18 @@
 
 #pragma once
 #include "Miner.h"
+#include <queue>
 
-// @todo #52 add chance to append block to train.
-//  If chain is growth - Selfish miner want to apperd he head to chain.
-//  And he do it block by block.
-
-// This is selfish miner whoes try produce longest chain.
-class MinerChainer final : public Miner {
+// This is selfish miner wait for other block
+class MinerSelfish final : public Miner {
 public:
-	explicit MinerChainer(const std::shared_ptr<const Miner> &miner);
+	explicit MinerSelfish(const std::shared_ptr<const Miner> &miner);
 	std::string name() const override;
-	std::shared_ptr<Block> mine(
+	std::shared_ptr<const Block> mine(
+		const std::list<std::shared_ptr<const Block>> &heads,
+		int difficulty
+	) const override;
+	std::shared_ptr<const Block> postmine(
 		const std::list<std::shared_ptr<const Block>> &heads,
 		int difficulty
 	) const override;
@@ -23,7 +24,7 @@ private:
 	const std::shared_ptr<const Miner> miner;
 
 	struct BlockHolder final {
-		std::shared_ptr<const Block> block;
+		std::queue<std::shared_ptr<const Block>> blocks;
 	};
 	const std::shared_ptr<BlockHolder> mined;
 };

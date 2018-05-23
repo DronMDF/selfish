@@ -10,7 +10,11 @@ class MinerConcerned final : public Miner {
 public:
 	explicit MinerConcerned(const std::shared_ptr<const Miner> &miner);
 	std::string name() const override;
-	std::shared_ptr<Block> mine(
+	std::shared_ptr<const Block> mine(
+		const std::list<std::shared_ptr<const Block>> &heads,
+		int difficulty
+	) const override;
+	std::shared_ptr<const Block> postmine(
 		const std::list<std::shared_ptr<const Block>> &heads,
 		int difficulty
 	) const override;

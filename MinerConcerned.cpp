@@ -19,7 +19,10 @@ string MinerConcerned::name() const
 	return miner->name();
 }
 
-shared_ptr<Block> MinerConcerned::mine(const list<shared_ptr<const Block>> &heads, int difficulty) const
+shared_ptr<const Block> MinerConcerned::mine(
+	const list<shared_ptr<const Block>> &heads,
+	int difficulty
+) const
 {
 	list<shared_ptr<const Block>> my_heads;
 	copy_if(
@@ -34,3 +37,10 @@ shared_ptr<Block> MinerConcerned::mine(const list<shared_ptr<const Block>> &head
 	return miner->mine(my_heads.empty() ? heads : my_heads, difficulty);
 }
 
+shared_ptr<const Block> MinerConcerned::postmine(
+	const list<shared_ptr<const Block>> &heads,
+	int difficulty
+) const
+{
+	return miner->postmine(heads, difficulty);
+}
