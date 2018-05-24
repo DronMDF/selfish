@@ -1,0 +1,5 @@
+errors:
+  - dron.valyaev@gmail.com
+alerts:
+  suppress:
+    - on-scope
