@@ -62,5 +62,5 @@ shared_ptr<const Chain> ChainFull::mine(const list<shared_ptr<const Miner>> &min
 
 int ChainFull::amount(const std::shared_ptr<const Miner> &miner) const
 {
-	return blocks.front()->amount(miner->name());
+	return blocks.front()->amount(miner->name(), 0);
 }

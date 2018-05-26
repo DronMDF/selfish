@@ -42,7 +42,7 @@ int BlockNull::difficultySeries() const
 	return 0;
 }
 
-int BlockNull::amount(const string &) const
+int BlockNull::amount(const string &, int counts) const
 {
-	return 0;
+	return counts;
 }

@@ -58,7 +58,7 @@ int BlockNext::difficultySeries() const
 	return 1 + (difficulty() == parent->difficulty() ? parent->difficultySeries() : 0);
 }
 
-int BlockNext::amount(const string &user) const
+int BlockNext::amount(const string &user, int counts) const
 {
-	return parent->amount(user) + (user == miner ? 1 : 0);
+	return parent->amount(user, counts + (user == miner ? 1 : 0));
 }

@@ -46,8 +46,8 @@ int BlockCache::difficultySeries() const
 	return parent->difficultySeries();
 }
 
-int BlockCache::amount(const string &user) const
+int BlockCache::amount(const string &user, int counts) const
 {
-	return parent->amount(user);
+	return parent->amount(user, counts);
 }
 
