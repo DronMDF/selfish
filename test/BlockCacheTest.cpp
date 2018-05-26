@@ -49,9 +49,9 @@ public:
 		return 0;
 	}
 
-	int amount(const string &) const override
+	int amount(const string &, int counts) const override
 	{
-		return 0;
+		return counts;
 	}
 
 	int getInvocations() {

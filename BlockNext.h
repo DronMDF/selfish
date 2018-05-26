@@ -21,7 +21,7 @@ public:
 	std::chrono::high_resolution_clock::time_point getNthParentTime(size_t n) const override;
 	int difficulty() const override;
 	int difficultySeries() const override;
-	int amount(const std::string &user) const override;
+	int amount(const std::string &user, int counts) const override;
 private:
 	const std::chrono::high_resolution_clock::time_point timestamp;
 	const std::shared_ptr<const Block> parent;

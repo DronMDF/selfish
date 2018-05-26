@@ -28,5 +28,5 @@ public:
 	/// Counts of block with same difficult
 	virtual int difficultySeries() const = 0;
 	/// Get user amount
-	virtual int amount(const std::string &user) const = 0;
+	virtual int amount(const std::string &user, int counts) const = 0;
 };
