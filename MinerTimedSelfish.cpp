@@ -54,7 +54,7 @@ shared_ptr<const Block> MinerTimedSelfish::postmine(
 	int difficulty
 ) const
 {
-	if (!mined->timed and !mined->blocks.empty()) {
+	if (!mined->timed && !mined->blocks.empty()) {
 		const auto block = mined->blocks.front();
 		if (block->number() != heads.front()->number() + 1) {
 			throw runtime_error("Wrong blocks");
