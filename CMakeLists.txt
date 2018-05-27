@@ -17,6 +17,7 @@ set(
 	${CMAKE_CURRENT_SOURCE_DIR}/MinerConcerned.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/MinerFair.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/MinerSelfish.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/MinerTimedSelfish.cpp
 )
 
 add_executable(
