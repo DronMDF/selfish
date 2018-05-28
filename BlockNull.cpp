@@ -12,6 +12,11 @@ BlockNull::BlockNull()
 {
 }
 
+bool BlockNull::verify(const string &) const
+{
+	return false;
+}
+
 size_t BlockNull::number() const
 {
 	return 0;

@@ -5,6 +5,7 @@
 
 #include "MinerConcerned.h"
 #include <algorithm>
+#include <functional>
 #include "Block.h"
 
 using namespace std;
@@ -29,10 +30,7 @@ shared_ptr<const Block> MinerConcerned::mine(
 		heads.begin(),
 		heads.end(),
 		back_inserter(my_heads),
-		[this](const auto &b){
-			// @todo #51 Block do not provide method for check author
-			return b->identity().find(this->name()) != string::npos;
-		}
+		bind(&Block::verify, placeholders::_1, miner->name())
 	);
 	return miner->mine(my_heads.empty() ? heads : my_heads, difficulty);
 }

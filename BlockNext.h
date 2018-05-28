@@ -15,6 +15,7 @@ public:
 		int nonce,
 		int dvalue
 	);
+	bool verify(const std::string &pubkey) const override;
 	size_t number() const override;
 	std::string hash() const override;
 	std::string identity() const override;

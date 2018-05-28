@@ -15,6 +15,11 @@ BlockCache::BlockCache(const shared_ptr<const Block> &parent)
 {
 }
 
+bool BlockCache::verify(const string &pubkey) const
+{
+	return parent->verify(pubkey);
+}
+
 size_t BlockCache::number() const
 {
 	return number_cache->value(bind(&Block::number, parent));

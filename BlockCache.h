@@ -33,6 +33,7 @@ private:
 class BlockCache final : public Block {
 public:
 	explicit BlockCache(const std::shared_ptr<const Block> &parent);
+	bool verify(const std::string &pubkey) const override;
 	size_t number() const override;
 	std::string hash() const override;
 	std::string identity() const override;
