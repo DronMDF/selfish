@@ -18,6 +18,8 @@ namespace {
 
 class BlockCounted final : public Block {
 public:
+	BlockCounted() = default;
+
 	size_t number() const override
 	{
 		return 1;

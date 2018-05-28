@@ -13,6 +13,7 @@
 #include "MinerConcerned.h"
 #include "MinerFair.h"
 #include "MinerSelfish.h"
+#include "MinerTimedSelfish.h"
 
 using namespace std;
 
