@@ -18,6 +18,10 @@ class Block {
 public:
 	~Block() = default;
 
+	// Verification method. This is a trick, we do not use key pairs,
+	// The public key is the name of the miner for check self blocks.
+	virtual bool verify(const std::string &pubkey) const = 0;
+
 	virtual size_t number() const = 0;
 	virtual std::string hash() const = 0;
 	virtual std::string identity() const = 0;

@@ -24,6 +24,11 @@ BlockNext::BlockNext(
 {
 }
 
+bool BlockNext::verify(const string &pubkey) const
+{
+	return miner == pubkey;
+}
+
 size_t BlockNext::number() const
 {
 	return parent->number() + 1;
