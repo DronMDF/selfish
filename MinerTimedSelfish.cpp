@@ -5,6 +5,7 @@
 
 #include "MinerTimedSelfish.h"
 #include <algorithm>
+#include <functional>
 #include <iostream>
 #include "Block.h"
 #include "BlockDifficulty.h"
@@ -24,45 +25,39 @@ string MinerTimedSelfish::name() const
 
 shared_ptr<const Block> MinerTimedSelfish::mine(
 	const list<shared_ptr<const Block>> &heads,
+	const list<shared_ptr<const Block>> &current,
 	int difficulty
 ) const
 {
 	shared_ptr<const Block> block;
 	if (mined->blocks.empty()) {
-		block = miner->mine(heads, difficulty);
+		block = miner->mine(heads, {}, difficulty);
 	} else {
-		block = miner->mine({mined->blocks.back()}, difficulty);
+		block = miner->mine({mined->blocks.back()}, {}, difficulty);
 	}
 	if (BlockDifficulty(block).value() >= difficulty) {
 		mined->blocks.push(block);
 	}
+
 	if (!mined->blocks.empty()) {
 		const auto block = mined->blocks.front();
+		if (!current.empty()
+			&& count_if(
+				current.begin(),
+				current.end(),
+				bind(&Block::verify, placeholders::_1, miner->name())
+			) == 0
+		) {
+			mined->blocks.pop();
+			return block;
+		}
+
 		const auto delta =
 			chrono::high_resolution_clock::now() - block->getNthParentTime(1);
 		if (delta > chrono::seconds(1)) {
-			mined->timed = true;
 			mined->blocks.pop();
 			return block;
 		}
 	}
 	return {};
 }
-
-shared_ptr<const Block> MinerTimedSelfish::postmine(
-	const list<shared_ptr<const Block>> &heads,
-	int difficulty
-) const
-{
-	if (!mined->timed && !mined->blocks.empty()) {
-		const auto block = mined->blocks.front();
-		if (block->number() != heads.front()->number() + 1) {
-			throw runtime_error("Wrong blocks");
-		}
-		mined->blocks.pop();
-		return block;
-	}
-	mined->timed = false;
-	return miner->postmine(heads, difficulty);
-}
-

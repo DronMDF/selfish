@@ -14,10 +14,7 @@ public:
 	std::string name() const override;
 	std::shared_ptr<const Block> mine(
 		const std::list<std::shared_ptr<const Block>> &heads,
-		int difficulty
-	) const override;
-	std::shared_ptr<const Block> postmine(
-		const std::list<std::shared_ptr<const Block>> &heads,
+		const std::list<std::shared_ptr<const Block>> &current,
 		int difficulty
 	) const override;
 private:
@@ -25,7 +22,6 @@ private:
 
 	struct BlockHolder final {
 		std::queue<std::shared_ptr<const Block>> blocks;
-		bool timed = false;
 	};
 	const std::shared_ptr<BlockHolder> mined;
 };

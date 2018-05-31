@@ -16,10 +16,7 @@ public:
 	virtual std::string name() const = 0;
 	virtual std::shared_ptr<const Block> mine(
 		const std::list<std::shared_ptr<const Block>> &heads,
-		int difficulty
-	) const = 0;
-	virtual std::shared_ptr<const Block> postmine(
-		const std::list<std::shared_ptr<const Block>> &heads,
+		const std::list<std::shared_ptr<const Block>> &current,
 		int difficulty
 	) const = 0;
 };

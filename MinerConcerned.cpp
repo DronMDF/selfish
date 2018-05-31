@@ -22,6 +22,7 @@ string MinerConcerned::name() const
 
 shared_ptr<const Block> MinerConcerned::mine(
 	const list<shared_ptr<const Block>> &heads,
+	const list<shared_ptr<const Block>> &current,
 	int difficulty
 ) const
 {
@@ -32,13 +33,5 @@ shared_ptr<const Block> MinerConcerned::mine(
 		back_inserter(my_heads),
 		bind(&Block::verify, placeholders::_1, miner->name())
 	);
-	return miner->mine(my_heads.empty() ? heads : my_heads, difficulty);
-}
-
-shared_ptr<const Block> MinerConcerned::postmine(
-	const list<shared_ptr<const Block>> &heads,
-	int difficulty
-) const
-{
-	return miner->postmine(heads, difficulty);
+	return miner->mine(my_heads.empty() ? heads : my_heads, current, difficulty);
 }

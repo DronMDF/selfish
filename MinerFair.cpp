@@ -13,7 +13,7 @@ using namespace std;
 
 // @todo #60 Need to wrap default_random_engine for testing
 MinerFair::MinerFair(const string &name, const shared_ptr<default_random_engine> &random)
-	: user(name), random(random)
+	: user(name), random(random), level(make_shared<int>(0))
 {
 }
 
@@ -24,18 +24,19 @@ string MinerFair::name() const
 
 shared_ptr<const Block> MinerFair::mine(
 	const list<shared_ptr<const Block>> &heads,
+	const list<shared_ptr<const Block>> &current,
 	int difficulty
 ) const
 {
 	auto head = heads.begin();
 	advance(head, (*random)() % heads.size());
-	return make_shared<BlockNext>(*head, user, (*random)(), difficulty);
-}
+	if (*level <= (*head)->number()) {
+		const auto block = make_shared<BlockNext>(*head, user, (*random)(), difficulty);
+		if (BlockDifficulty(block).value() >= difficulty) {
+			*level = block->number();
+			return block;
+		}
+	}
 
-shared_ptr<const Block> MinerFair::postmine(
-	const list<shared_ptr<const Block>> &heads,
-	int difficulty
-) const
-{
 	return {};
 }
